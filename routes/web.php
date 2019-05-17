@@ -26,9 +26,15 @@ Route::post('/login', 'AuthController@login');
 
 
 Route::group(['middleware'=>'auth'], function(){
-Route::get('/dashboard', 'DashboardController@showDashboard')->name('dashboard');
 
 Route::get('/logout', 'AuthController@logout')->name('logout');
+
+Route::group(['middleware'=>'verified'], function(){
+
+	Route::get('/dashboard', 'DashboardController@showDashboard')->name('dashboard');
+
+
+	});
 
 });
 

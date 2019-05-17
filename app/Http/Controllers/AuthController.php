@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\Request;
 
 class AuthController extends Controller
 {
@@ -69,13 +70,10 @@ class AuthController extends Controller
      	 if (auth()->attempt($credentials)) {
 
             $user= auth()->user();
-            if($user->hasVerifiedEmail()=== true)
-            {
-                return redirect()->route('dashboard');
-            }
+              return redirect()->route('dashboard');
+          
      	 	
-         session()->flash('message', 'You need to activate your Email.');
-         return redirect()->back();
+         
      	 
      	 }
 
